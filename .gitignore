@@ -1,0 +1,5 @@
+# clasp local credentials & project pointer — never commit these
+.clasp.json
+.clasprc.json
+node_modules/
+*.log
