@@ -265,7 +265,9 @@ function notifyOwner(where, msg, stack) {
 function toNumber(v) {
   if (typeof v === 'number') return isFinite(v) ? v : null;
   if (v === '' || v === null || v === undefined) return null;
-  var n = Number(String(v).replace(/[^0-9.\-]/g, ''));
+  var cleaned = String(v).replace(/[^0-9.\-]/g, '');
+  if (!/[0-9]/.test(cleaned)) return null; // no digits (e.g. "n/a") → genuinely unparseable; skip, never fake a 0
+  var n = Number(cleaned);
   return isFinite(n) ? n : null;
 }
 function isBlankRow(row) {
